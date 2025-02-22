@@ -15,16 +15,20 @@ const symbols = "#$%&'()*+,-./:;<=>?@[\]^_`\"{|}~";
 let password = "";
 let passwordLength = 10;
 let checkCount = 1;
+console.log(inputSlider.style);
 handleSlider();
 //set passwordLength
 function handleSlider(){
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize = ((passwordLength - min)*100/(max-min)) + "% 100%";
 }
 //set indicator for indicating strength of password
 function setIndicator(color){
     indicator.style.backgroundColor = color;
-    console.log(color);
+    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 function getRandomInteger(min,max){
     return Math.floor(Math.random() * (max - min)) + min;
