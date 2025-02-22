@@ -16,7 +16,6 @@ let password = "";
 let passwordLength = 10;
 let checkCount = 1;
 handleSlider();
-
 //set passwordLength
 function handleSlider(){
     inputSlider.value = passwordLength;
@@ -24,7 +23,8 @@ function handleSlider(){
 }
 //set indicator for indicating strength of password
 function setIndicator(color){
-    indicator.style.backgroundcolor = color;
+    indicator.style.backgroundColor = color;
+    console.log(color);
 }
 function getRandomInteger(min,max){
     return Math.floor(Math.random() * (max - min)) + min;
@@ -99,13 +99,14 @@ function generatePassword(){
     for(let i = 0;i<passwordLength-checkCount;i++){
         let fn = getRandomInteger(0,funcArr.length);
         password += funcArr[fn]();
-        console.log(password);
     }
 }
 function shufflePassword(array){
     //fisher yales method
     for(let i = array.length-1;i>0;i--){
+        //finding a random index
         const j = getRandomInteger(0,i+1);
+        //swaping the characters
         const temp = array[i];
         array[i] = array[j];
         array[j] = temp;
@@ -135,6 +136,7 @@ generateBtn.addEventListener('click',()=>{
         handleSlider();
     }
     generatePassword();
+    calStrength();
     //shulle the password
     password = shufflePassword(Array.from(password));
     passwordDisplay.value = password;
